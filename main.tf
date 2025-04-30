@@ -26,11 +26,12 @@ module "gcs_buckets" {
   location      = "US"
   storage_class = "STANDARD"
 
-  set_viewer_roles         = "allUsers"
+  set_viewer_roles         = true
+  bucket_viewers = ["allusers"]
   public_access_prevention = false
 
 
-  force_destroy = true
+  force_destroy = [true]
 }
 
 # Upload a simple index.html page to the bucket
