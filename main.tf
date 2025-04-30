@@ -24,8 +24,8 @@ provider "google" {
 provider "random" {}
 
 resource "random_integer" "bucket_name_prefix" {
-    min = 10000
-    max = 9999999
+  min = 10000
+  max = 9999999
 }
 
 module "gcs_buckets" {
@@ -64,13 +64,13 @@ resource "google_storage_bucket_iam_member" "public_rule" {
 
 #Reserve a static IP address for the load balancer
 resource "google_compute_global_address" "lb-ip" {
-  name   = "lb-ip"
+  name         = "lb-ip"
   address_type = "EXTERNAL"
 }
 
 resource "google_compute_backend_bucket" "backend" {
-    name = "website-backend"
-    bucket_name = module.gcs_buckets.bucket.id 
+  name        = "website-backend"
+  bucket_name = module.gcs_buckets.bucket.id
 }
 
 #Create a URL map for the load balancer
@@ -99,11 +99,11 @@ resource "google_compute_target_http_proxy" "http-proxy" {
 #Create a global forwarding rule
 resource "google_compute_global_forwarding_rule" "forwarding-rule" {
   name                  = "website-forwarding-rule"
-  ip_protocol = "TCP"
-  port_range           = "80"
-    load_balancing_scheme = "EXTERNAL_MANAGED"
-  target               = google_compute_target_http_proxy.http-proxy.id
-  ip_address           = google_compute_global_address.lb-ip.id
+  ip_protocol           = "TCP"
+  port_range            = "80"
+  load_balancing_scheme = "EXTERNAL_MANAGED"
+  target                = google_compute_target_http_proxy.http-proxy.id
+  ip_address            = google_compute_global_address.lb-ip.id
 }
 
 #Create a health check for the backend service
@@ -115,7 +115,7 @@ resource "google_compute_health_check" "http-health-check" {
   unhealthy_threshold = 2
 
   http_health_check {
-    port = "80"
+    port         = "80"
     request_path = "/index.html"
   }
 }
