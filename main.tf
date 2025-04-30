@@ -25,13 +25,8 @@ module "gcs_buckets" {
   names         = ["website"]
   location      = "US"
   storage_class = "STANDARD"
-
-  set_viewer_roles         = true
-  bucket_viewers = ["allusers"]
   public_access_prevention = false
-
-
-  force_destroy = [true]
+  force_destroy = {"website" = true}
 }
 
 # Upload a simple index.html page to the bucket
@@ -48,4 +43,11 @@ resource "google_storage_bucket_object" "errorpage" {
   content      = "<html><body>404!</body></html>"
   content_type = "text/html"
   bucket       = module.gcs_buckets.bucket_name.id
+}
+
+# Make bucket public by granting allUsers storage.objectViewer access
+resource "google_storage_bucket_iam_member" "public_rule" {
+  bucket = google_storage_bucket.static_website.name
+  role   = "roles/storage.objectViewer"
+  member = "allUsers"
 }
