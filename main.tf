@@ -86,12 +86,11 @@ resource "google_compute_url_map" "url-map" {
 
   path_matcher {
     name            = "path-matcher"
-    default_service = google_compute_backend_bucket.backend.id
+    default_service = google_storage_bucket_object.indexpage.id
 
-    default_route_action {
-      url_rewrite {
-        path_prefix_rewrite = "/index.html"
-      }
+    path_rule {
+      paths   = ["/404"]
+      service = google_storage_bucket_object.errorpage.id
     }
   }
 }
@@ -110,12 +109,4 @@ resource "google_compute_global_forwarding_rule" "forwarding-rule" {
   load_balancing_scheme = "EXTERNAL_MANAGED"
   target                = google_compute_target_http_proxy.http-proxy.id
   ip_address            = google_compute_global_address.lb-ip.id
-}
-
-#Create a health check for the backend service
-resource "google_compute_http_health_check" "http-health-check" {
-  name               = "http-health-check"
-  request_path       = "/"
-  check_interval_sec = 5
-  timeout_sec        = 5
 }
