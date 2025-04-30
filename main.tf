@@ -87,6 +87,12 @@ resource "google_compute_url_map" "url-map" {
   path_matcher {
     name            = "path-matcher"
     default_service = google_compute_backend_bucket.backend.id
+
+    default_route_action {
+      url_rewrite {
+        path_prefix_rewrite = "/index.html"
+      }
+    }
   }
 }
 
@@ -107,15 +113,9 @@ resource "google_compute_global_forwarding_rule" "forwarding-rule" {
 }
 
 #Create a health check for the backend service
-resource "google_compute_health_check" "http-health-check" {
-  name                = "http-health-check"
-  check_interval_sec  = 10
-  timeout_sec         = 5
-  healthy_threshold   = 2
-  unhealthy_threshold = 2
-
-  http_health_check {
-    port         = "80"
-    request_path = "/index.html"
-  }
+resource "google_compute_http_health_check" "http-health-check" {
+  name               = "http-health-check"
+  request_path       = "/"
+  check_interval_sec = 5
+  timeout_sec        = 5
 }
