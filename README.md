@@ -26,7 +26,7 @@ The project creates the following resources:
 git clone https://github.com/gmccormick8/simple-gcp-static-website.git && cd simple-gcp-static-website
 ```
 
-2. Run setup script to initialize the project:
+2. Run setup script to initialize the project (enter "y" when prompted):
 ```bash
 bash setup.sh
 ```
@@ -36,6 +36,7 @@ The setup script will:
 - Enable required Google Cloud APIs
 - Initialize Terraform
 - Create and apply the Terraform configuration
+- Display a link to the newly created site at the end of the output. Please note that it may take several minutes for the site to go live. 
 
 ## Manual Deployment
 
@@ -56,7 +57,7 @@ terraform init
 terraform plan
 ```
 
-4. Apply the configuration:
+4. Apply the configuration (enter "yes" when prompted):
 ```bash
 terraform apply
 ```
@@ -69,7 +70,7 @@ terraform apply
 
 ## Cleanup
 
-To remove all created resources:
+To remove all created resources (enter "yes" when prompted):
 ```bash
 terraform destroy
 ```
