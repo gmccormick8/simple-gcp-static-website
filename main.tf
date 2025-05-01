@@ -16,31 +16,17 @@ terraform {
   required_version = "~> 1.11.0"
 }
 
-#Setup the provider
+# Setup the providers
 provider "google" {
   project = var.project_id
 }
-
 provider "random" {}
 
-resource "random_integer" "bucket_name_prefix" {
-  min = 10000
-  max = 9999999
-}
-
-module "gcs_buckets" {
-  source        = "terraform-google-modules/cloud-storage/google"
-  version       = "~> 10.0"
-  project_id    = var.project_id
-  names         = ["website"]
-  prefix        = random_integer.bucket_name_prefix.result
-  location      = "US"
-  storage_class = "STANDARD"
-  force_destroy = { "website" = true }
-  website  ={
-    main_page_suffix = "index.html"
-    not_found_page   = "404.html"
-  }
+# Create a bucket for the website
+module "bucket" {
+  source = "./modules/storage"
+  project_id = var.project_id
+  bucket_name   = "website"
 }
 
 # Upload a simple index.html page to the bucket
@@ -48,7 +34,7 @@ resource "google_storage_bucket_object" "indexpage" {
   name         = "index.html"
   content      = "<html><body>Hello World!</body></html>"
   content_type = "text/html"
-  bucket       = module.gcs_buckets.bucket.id
+  bucket       = module.bucket.bucket.id
 }
 
 # Upload a simple 404 / error page to the bucket
@@ -56,56 +42,11 @@ resource "google_storage_bucket_object" "errorpage" {
   name         = "404.html"
   content      = "<html><body>404!</body></html>"
   content_type = "text/html"
-  bucket       = module.gcs_buckets.bucket.id
+  bucket       = module.bucket.bucket.id
 }
 
-# Make bucket public by granting allUsers storage.objectViewer access
-resource "google_storage_bucket_iam_member" "public_rule" {
-  bucket = module.gcs_buckets.bucket.id
-  role   = "roles/storage.objectViewer"
-  member = "allUsers"
-}
-
-#Reserve a static IP address for the load balancer
-resource "google_compute_global_address" "lb-ip" {
-  name         = "lb-ip"
-  address_type = "EXTERNAL"
-}
-
-resource "google_compute_backend_bucket" "backend" {
-  name        = "website-backend"
-  bucket_name = module.gcs_buckets.bucket.name
-}
-
-#Create a URL map for the load balancer
-resource "google_compute_url_map" "url-map" {
-  name = "http-lb"
-
-  default_service = google_compute_backend_bucket.backend.id
-
-  host_rule {
-    hosts        = ["*"] 
-    path_matcher = "path-matcher"
-  }
-
-  path_matcher {
-    name            = "path-matcher"
-    default_service = google_compute_backend_bucket.backend.id
-  }
-}
-
-#Create a target HTTP proxy for the load balancer
-resource "google_compute_target_http_proxy" "http-proxy" {
-  name    = "http-proxy"
-  url_map = google_compute_url_map.url-map.id
-}
-
-#Create a global forwarding rule
-resource "google_compute_global_forwarding_rule" "forwarding-rule" {
-  name                  = "website-forwarding-rule"
-  ip_protocol           = "TCP"
-  port_range            = "80"
-  load_balancing_scheme = "EXTERNAL_MANAGED"
-  target                = google_compute_target_http_proxy.http-proxy.id
-  ip_address            = google_compute_global_address.lb-ip.id
+# Create a load balancer for the website
+module "load-balancer" {
+  source = "./modules/load-balancer"
+  bucket = module.bucket.bucket
 }
