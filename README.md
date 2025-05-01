@@ -1,10 +1,13 @@
 # GCP Static Website Terraform Project
 
-This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing. The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website) guide. This project is designed to run from the Google Cloud Shell using a user-friendly startup script. Simply clone this repository, run the script (following the prompts), and let Terraform do the rest!
+This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing.
+The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website) guide.
+This project is designed to run from the Google Cloud Shell using a user-friendly startup script. Simply clone this repository, run the script (following the prompts), and let Terraform do the rest!
 
 ## Architecture
 
 The project creates the following resources:
+
 - Google Cloud Storage bucket for hosting static content
 - Global HTTP External Application Load Balancer
 - Static IP address
@@ -22,42 +25,49 @@ The project creates the following resources:
 ## Quick Start (Google Cloud Shell)
 
 1. Clone this repository:
+
 ```bash
 git clone https://github.com/gmccormick8/simple-gcp-static-website.git && cd simple-gcp-static-website
 ```
 
 2. Run setup script to initialize the project (enter "y" when prompted):
+
 ```bash
 bash setup.sh
 ```
 
 The setup script will:
+
 - Verify and update Terraform if needed
 - Enable required Google Cloud APIs
 - Initialize Terraform
 - Create and apply the Terraform configuration
-- Display a link to the newly created website at the end of the output. Please note that it may take several minutes for the website to go live. 
+- Display a link to the newly created website at the end of the output. Please note that it may take several minutes for the website to go live.
 
 ## Manual Deployment
 
 If you prefer to deploy manually:
 
 1. Set your Google Cloud project ID:
+
 ```bash
 echo 'project_id = "YOUR_PROJECT_ID"' > terraform.tfvars
 ```
 
 2. Initialize Terraform:
+
 ```bash
 terraform init
 ```
 
 3. Review the deployment plan:
+
 ```bash
 terraform plan
 ```
 
 4. Apply the configuration (enter "yes" when prompted):
+
 ```bash
 terraform apply
 ```
@@ -71,6 +81,7 @@ terraform apply
 ## Cleanup
 
 To remove all created resources (enter "yes" when prompted):
+
 ```bash
 terraform destroy
 ```
@@ -78,6 +89,7 @@ terraform destroy
 ## Security Notes
 
 This implementation:
+
 - Makes the storage bucket public
 - Uses HTTP (not HTTPS)
 - Is intended for development/testing purposes

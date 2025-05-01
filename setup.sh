@@ -6,7 +6,7 @@
 set -e
 
 echo "Setting up the environment..."
-echo 'project_id = "'$DEVSHELL_PROJECT_ID'"' > terraform.tfvars
+echo 'project_id = "'"$DEVSHELL_PROJECT_ID"'"' > terraform.tfvars
 
 api_array=(
   "compute.googleapis.com"

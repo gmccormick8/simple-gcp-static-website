@@ -4,8 +4,7 @@ resource "random_integer" "bucket_name_prefix" {
 }
 
 module "gcs_buckets" {
-  source        = "terraform-google-modules/cloud-storage/google"
-  version       = "~> 10.0"
+  source        = "git::https://github.com/terraform-google-modules/terraform-google-cloud-storage.git?ref=66e472b56cd21b45a3939883a66ccfcf5ec1b9ed"
   project_id    = var.project_id
   names         = [var.bucket_name]
   prefix        = random_integer.bucket_name_prefix.result

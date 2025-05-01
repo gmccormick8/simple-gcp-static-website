@@ -1,4 +1,5 @@
 terraform {
+  required_version = "~> 1.11.0"
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -13,8 +14,6 @@ terraform {
   backend "local" {
     path = "./terraform.tfstate"
   }
-
-  required_version = "~> 1.11.0"
 }
 
 # Setup the providers
