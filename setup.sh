@@ -51,3 +51,30 @@ if [[ $current == false ]]; then
     echo "Terraform updated successfully."
   fi
 fi
+
+# Many thanks to Praneeth Bilakanti https://praneethreddybilakanti.medium.com/terraform-with-shell-scripts-e6007f975a90 for this bit! :)
+echo "Running Terraform init..."
+terraform init
+if [ $? -ne 0 ]; then
+  echo "Error during init. Exiting..."
+  exit 1
+fi
+
+echo "Running Terraform plan..."
+terraform plan
+if [ $? -ne 0 ]; then
+  echo "Error during plan. Exiting..."
+  exit 1
+fi
+
+read -p "Do you want to apply the changes? (y/n) " response
+if [[ "$response" == "y" ]]; then
+  terraform apply --auto-approve
+  if [ $? -ne 0 ]; then
+    echo "Error during apply. Exiting..."
+    exit 1
+  fi
+  echo "Terraform apply completed successfully."
+else
+  echo "Apply canceled."
+fi

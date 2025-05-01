@@ -11,8 +11,8 @@ module "gcs_buckets" {
   prefix        = random_integer.bucket_name_prefix.result
   location      = "US"
   storage_class = "STANDARD"
-  force_destroy = { var.bucket_name = true }
-  website  ={
+  force_destroy = { (var.bucket_name) = true }
+  website = {
     main_page_suffix = "index.html"
     not_found_page   = "404.html"
   }

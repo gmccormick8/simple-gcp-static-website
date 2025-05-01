@@ -24,9 +24,9 @@ provider "random" {}
 
 # Create a bucket for the website
 module "bucket" {
-  source = "./modules/storage"
-  project_id = var.project_id
-  bucket_name   = "website"
+  source      = "./modules/storage"
+  project_id  = var.project_id
+  bucket_name = "website"
 }
 
 # Upload a simple index.html page to the bucket
@@ -47,6 +47,6 @@ resource "google_storage_bucket_object" "errorpage" {
 
 # Create a load balancer for the website
 module "load-balancer" {
-  source = "./modules/load-balancer"
+  source      = "./modules/load-balancer"
   bucket_name = module.bucket.bucket.name
 }

@@ -18,7 +18,7 @@ resource "google_compute_url_map" "url-map" {
   default_service = google_compute_backend_bucket.backend.id
 
   host_rule {
-    hosts        = ["*"] 
+    hosts        = ["*"]
     path_matcher = "path-matcher"
   }
 

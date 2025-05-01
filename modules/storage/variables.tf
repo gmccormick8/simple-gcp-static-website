@@ -1,6 +1,6 @@
 variable "project_id" {
   description = "The ID of the project in which to create the bucket."
-  type        = string  
+  type        = string
 }
 
 variable "bucket_name" {
