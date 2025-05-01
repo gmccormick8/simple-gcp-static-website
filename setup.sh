@@ -54,23 +54,22 @@ fi
 
 # Many thanks to Praneeth Bilakanti https://praneethreddybilakanti.medium.com/terraform-with-shell-scripts-e6007f975a90 for this bit! :)
 echo "Running Terraform init..."
-terraform init
-if [ $? -ne 0 ]; then
+
+if ! terraform init; then
   echo "Error during init. Exiting..."
   exit 1
 fi
 
 echo "Running Terraform plan..."
-terraform plan
-if [ $? -ne 0 ]; then
+
+if ! terraform plan; then
   echo "Error during plan. Exiting..."
   exit 1
 fi
 
 read -p "Do you want to apply the changes? (y/n) " response
 if [[ "$response" == "y" ]]; then
-  terraform apply --auto-approve
-  if [ $? -ne 0 ]; then
+  if ! terraform apply --auto-approve; then
     echo "Error during apply. Exiting..."
     exit 1
   fi

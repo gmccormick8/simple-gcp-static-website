@@ -1,6 +1,6 @@
 # GCP Static Website Terraform Project
 
-This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing. The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website#lb-host) guide. This project is designed to run from the Google Cloud Shell using a user-friendly startup script. Simply clone the repo, run the script (following the prompts), and let Terraform do the rest!
+This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing. The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website) guide. This project is designed to run from the Google Cloud Shell using a user-friendly startup script. Simply clone this repository, run the script (following the prompts), and let Terraform do the rest!
 
 ## Architecture
 
@@ -36,7 +36,7 @@ The setup script will:
 - Enable required Google Cloud APIs
 - Initialize Terraform
 - Create and apply the Terraform configuration
-- Display a link to the newly created site at the end of the output. Please note that it may take several minutes for the site to go live. 
+- Display a link to the newly created website at the end of the output. Please note that it may take several minutes for the website to go live. 
 
 ## Manual Deployment
 
