@@ -37,6 +37,10 @@ module "gcs_buckets" {
   location      = "US"
   storage_class = "STANDARD"
   force_destroy = { "website" = true }
+  website  ={
+    main_page_suffix = "index.html"
+    not_found_page   = "404.html"
+  }
 }
 
 # Upload a simple index.html page to the bucket
@@ -70,7 +74,7 @@ resource "google_compute_global_address" "lb-ip" {
 
 resource "google_compute_backend_bucket" "backend" {
   name        = "website-backend"
-  bucket_name = module.gcs_buckets.bucket.id
+  bucket_name = module.gcs_buckets.bucket.name
 }
 
 #Create a URL map for the load balancer
@@ -80,18 +84,13 @@ resource "google_compute_url_map" "url-map" {
   default_service = google_compute_backend_bucket.backend.id
 
   host_rule {
-    hosts        = ["*"]
+    hosts        = ["*"] 
     path_matcher = "path-matcher"
   }
 
   path_matcher {
     name            = "path-matcher"
-    default_service = google_storage_bucket_object.indexpage.id
-
-    path_rule {
-      paths   = ["/404"]
-      service = google_storage_bucket_object.errorpage.id
-    }
+    default_service = google_compute_backend_bucket.backend.id
   }
 }
 
