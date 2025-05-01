@@ -8,7 +8,7 @@ resource "google_compute_global_address" "lb-ip" {
 #Create a backend bucket for the load balancer
 resource "google_compute_backend_bucket" "backend" {
   name        = "website-backend"
-  bucket_name = var.bucket.name
+  bucket_name = var.bucket_name
 }
 
 #Create a URL map for the load balancer

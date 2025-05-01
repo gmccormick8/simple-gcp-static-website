@@ -48,5 +48,5 @@ resource "google_storage_bucket_object" "errorpage" {
 # Create a load balancer for the website
 module "load-balancer" {
   source = "./modules/load-balancer"
-  bucket = module.bucket.bucket
+  bucket_name = module.bucket.bucket.name
 }

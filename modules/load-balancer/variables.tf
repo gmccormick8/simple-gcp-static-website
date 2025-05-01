@@ -1,4 +1,4 @@
-variable "bucket" {
-  description = "Backend bucket"
-  type = object
+variable "bucket_name" {
+  description = "Backend bucket name"
+  type = string
 }
