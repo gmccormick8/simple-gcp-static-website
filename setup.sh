@@ -2,7 +2,9 @@
 # This script sets up the environment for Cloud Shell and applies the Terraform script.
 #usage: bash setup.sh
 
+# Exit immediately if a command exits with a non-zero status. 
 set -e
+
 echo "Setting up the environment..."
 echo 'project_id = "'$DEVSHELL_PROJECT_ID'"' > terraform.tfvars
 
@@ -38,13 +40,14 @@ if [[ $current == false ]]; then
   read -p "Terraform version is less than 1.11.0. Do you want to update it? (y/n) " update_response
   if [[ "$update_response" != "y" ]]; then
     echo "Exiting without updating Terraform."
-    exit 0
+    exit 1
   else
     echo "Updating Terraform..."
+    if ! {
     wget -O - https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
     sudo apt update && sudo apt install terraform
-    if [ $? -ne 0 ]; then
+    }; then
       echo "Error during Terraform update. Exiting..."
       exit 1
     fi
