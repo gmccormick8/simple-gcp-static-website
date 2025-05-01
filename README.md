@@ -23,7 +23,7 @@ The project creates the following resources:
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/gmccormick8/simple-gcp-static-website.git && cd static-website
+git clone https://github.com/gmccormick8/simple-gcp-static-website.git && cd simple-gcp-static-website
 ```
 
 2. Run setup script to initialize the project:
