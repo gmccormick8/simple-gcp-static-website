@@ -17,7 +17,7 @@ do
   gcloud services enable "$api" --project="$DEVSHELL_PROJECT_ID"
 done
 
-# Check the Terraform version and updates if needed. Based on jacouh'script https://stackoverflow.com/questions/48491662/comparing-two-version-numbers-in-a-shell-script
+# Check the Terraform version and updates if needed. Based on jacouh's script https://stackoverflow.com/questions/48491662/comparing-two-version-numbers-in-a-shell-script
 version=$(terraform -v | grep -Eo -m 1 '[0-9]+\.[0-9]+\.[0-9]+')
 expected_version=1.11.0
 
