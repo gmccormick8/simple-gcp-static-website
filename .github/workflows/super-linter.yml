@@ -35,10 +35,10 @@ jobs:
         uses: github/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: true
-          FIX_MARKDOWN_PRETTIER: true
-          FIX_YAML_PRETTIER: true
+          FIX_MARKDOWN: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
           IGNORE_GITIGNORED_FILES: true
+          TERRAFORM_TFLINT_CONFIG_FILE: linter-config/.tflint.hcl
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
