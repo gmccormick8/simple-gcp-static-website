@@ -31,8 +31,8 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
-          NATURAL_LANGUAGE_CONFIG_FILE: .github/linters/.textlintrc
-          CHECKOV_CONFIG_FILE: .github/linters/checkov.yml
+          NATURAL_LANGUAGE_CONFIG_FILE: /.github/linters/.textlintrc
+          CHECKOV_CONFIG_FILE: /.github/linters/checkov.yaml
           IGNORE_GITIGNORED_FILES: true
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
