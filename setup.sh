@@ -23,21 +23,21 @@ done
 version=$(terraform -v | grep -Eo -m 1 '[0-9]+\.[0-9]+\.[0-9]+')
 expected_version=1.11.0
 
-xarr=(${version//./ })
-yarr=(${expected_version//./ })
+IFS="." read -ra xarr <<< "$version"
+IFS="." read -ra yarr <<< "$expected_version"
 
 current=true
 for i in "${!xarr[@]}"; do
- if [ ${xarr[i]} -ge ${yarr[i]} ]; then
+ if [ "${xarr[i]}" -ge "${yarr[i]}" ]; then
     current=true
-  elif [ ${xarr[i]} -lt ${yarr[i]} ]; then
+  elif [ "${xarr[i]}" -lt "${yarr[i]}" ]; then
     current=false
     break
   fi
 done
 
 if [[ $current == false ]]; then
-  read -p "Terraform version is less than 1.11.0. Do you want to update it? (y/n) " update_response
+  read -rp "Terraform version is less than 1.11.0. Do you want to update it? (y/n) " update_response
   if [[ "$update_response" != "y" ]]; then
     echo "Exiting without updating Terraform."
     exit 1
@@ -70,7 +70,7 @@ if ! terraform plan; then
   exit 1
 fi
 
-read -p "Do you want to apply the changes? (y/n) " response
+read -rp "Do you want to apply the changes? (y/n) " response
 if [[ "$response" == "y" ]]; then
   if ! terraform apply --auto-approve; then
     echo "Error during apply. Exiting..."

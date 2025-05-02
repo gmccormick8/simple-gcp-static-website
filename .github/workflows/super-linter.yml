@@ -16,10 +16,6 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    permissions:
-      contents: write
-      statuses: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,6 +31,8 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
+          NATURAL_LANGUAGE_CONFIG_FILE: .github/linters/.textlintrc
+          CHECKOV_CONFIG_FILE: .github/linters/checkov.yml
           IGNORE_GITIGNORED_FILES: true
           DEFAULT_BRANCH: "main"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
