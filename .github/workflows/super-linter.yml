@@ -39,6 +39,7 @@ jobs:
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
           IGNORE_GITIGNORED_FILES: true
-          TERRAFORM_TFLINT_CONFIG_FILE: linter-config/.tflint.hcl
+          LINTER_RULES_PATH: linter-config/
+          TERRAFORM_TFLINT_CONFIG_FILE: .tflint.hcl
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
