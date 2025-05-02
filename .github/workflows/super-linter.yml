@@ -9,9 +9,11 @@ name: Run Super Linter
 
 on:
   push:
-    branches: main
+    branches: 
+    - main
   pull_request:
-    branches: main
+    branches: 
+    - main
 
 permissions:
   contents: read
@@ -38,9 +40,9 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
-          LITNER_RULES_PATH: ./linters
-          NATURAL_LANGUAGE_CONFIG_FILE: ./linters/.textlintrc
-          CHECKOV_CONFIG_FILE: ./linters/.checkov.yaml
+          LITNER_RULES_PATH: .github\workflows\linters
+          NATURAL_LANGUAGE_CONFIG_FILE: .github\workflows\linters\.textlintrc
+          CHECKOV_CONFIG_FILE: .github\workflows\linters\.checkov.yaml
           IGNORE_GITIGNORED_FILES: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
