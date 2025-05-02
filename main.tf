@@ -1,15 +1,14 @@
 terraform {
-  required_version = "~> 1.11.0"
+  required_version = ">= 1.11.0, < 2.0.0"
   
   required_providers {
     google = {
       source  = "hashicorp/google"
-      version = "~> 6.30.0"
-      project = var.project_id
+      version = ">= 6.20.0, < 7.0.0"
     }
     random = {
       source  = "hashicorp/random"
-      version = "~> 3.7.0"
+      version = ">= 3.7.0, < 4.0.0"
     }
   }
 
@@ -17,6 +16,12 @@ terraform {
     path = "./terraform.tfstate"
   }
 }
+
+# Setup the providers
+provider "google" {
+  project = var.project_id
+}
+provider "random" {}
 
 # Create a bucket for the website
 module "bucket" {
