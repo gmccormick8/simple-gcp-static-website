@@ -1,4 +1,5 @@
 <!-- textlint-disable -->
+[![Run Super Linter](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml/badge.svg?branch=main)](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml)
 
 # GCP Static Website Terraform Project
 
