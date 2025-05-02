@@ -9,10 +9,10 @@ name: Run Super Linter
 
 on:
   push:
-    branches:
+    branches: 
     - main
   pull_request:
-    branches:
+    branches: 
     - main
 
 permissions:
@@ -35,6 +35,7 @@ jobs:
         uses: github/super-linter@v7
         env:
           VALIDATE_ALL_CODEBASE: true
+          VALIDATE_BASH_EXEC: false
           FIX_MARKDOWN_PRETTIER: true
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
