@@ -40,6 +40,7 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
+          TERRAFORM_TFLINT_CONFIG_FILE: .tflint.hcl
           IGNORE_GITIGNORED_FILES: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

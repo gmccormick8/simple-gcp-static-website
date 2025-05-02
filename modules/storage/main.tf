@@ -18,7 +18,7 @@ module "gcs_buckets" {
 }
 
 # Make bucket public by granting allUsers storage.objectViewer access
-# checkov:skip=CKV_GCP_28:Skip public bucket access check - Required for static website hosting
+#checkov:skip=CKV_GCP_28:Skip public bucket access check - Required for static website hosting
 resource "google_storage_bucket_iam_member" "public_rule" {
   bucket = module.gcs_buckets.bucket.id
   role   = "roles/storage.objectViewer"
