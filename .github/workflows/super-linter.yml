@@ -9,12 +9,19 @@ name: Run Super Linter
 
 on:
   push:
-    branches: ["main"]
+    branches: main
   pull_request:
-    branches: ["main"]
+    branches: main
+
+permissions:
+  contents: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      statuses: write
 
     steps:
       - name: Checkout code
@@ -31,8 +38,9 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
-          NATURAL_LANGUAGE_CONFIG_FILE: .textlintrc
-          CHECKOV_CONFIG_FILE: .checkov.yaml
+          LITNER_RULES_PATH: ./linters
+          NATURAL_LANGUAGE_CONFIG_FILE: ./linters/.textlintrc
+          CHECKOV_CONFIG_FILE: ./linters/.checkov.yaml
           IGNORE_GITIGNORED_FILES: true
-          DEFAULT_BRANCH: "main"
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
