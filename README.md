@@ -1,7 +1,8 @@
 <!-- textlint-disable -->
-[![Run Super Linter](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml/badge.svg?branch=main)](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml)
 
 # GCP Static Website Terraform Project
+
+[![Run Super Linter](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml/badge.svg?branch=main)](https://github.com/gmccormick8/simple-gcp-static-website/actions/workflows/super-linter.yml)
 
 This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing.
 The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website) guide.
