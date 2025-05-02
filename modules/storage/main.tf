@@ -1,5 +1,3 @@
-provider "random" {}
-
 resource "random_integer" "bucket_name_prefix" {
   min = 10000
   max = 9999999
