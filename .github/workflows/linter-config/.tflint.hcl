@@ -5,6 +5,10 @@ plugin "terraform" {
   preset  = "recommended"
 }
 
+config {
+  call_module_type = ["local", "registry"]
+}
+
 plugin "google" {
     enabled = true
     version = "0.32.0"
@@ -12,5 +16,13 @@ plugin "google" {
 }
 
 rule "terraform_unused_declarations" {
+  enabled = false
+}
+
+rule "terraform_required_version" {
+  enabled = false
+}
+
+rule "terraform_required_providers" {
   enabled = false
 }

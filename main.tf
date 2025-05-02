@@ -5,6 +5,7 @@ terraform {
     google = {
       source  = "hashicorp/google"
       version = "~> 6.30.0"
+      project = var.project_id
     }
     random = {
       source  = "hashicorp/random"
@@ -16,12 +17,6 @@ terraform {
     path = "./terraform.tfstate"
   }
 }
-
-# Setup the providers
-provider "google" {
-  project = var.project_id
-}
-provider "random" {}
 
 # Create a bucket for the website
 module "bucket" {

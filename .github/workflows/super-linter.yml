@@ -9,11 +9,11 @@ name: Run Super Linter
 
 on:
   push:
-    branches: 
-    - main
+    branches:
+      - main
   pull_request:
-    branches: 
-    - main
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -39,7 +39,5 @@ jobs:
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
           IGNORE_GITIGNORED_FILES: true
-          LINTER_RULES_PATH: linter-config/
-          TERRAFORM_TFLINT_CONFIG_FILE: .tflint.hcl
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

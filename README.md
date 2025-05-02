@@ -1,9 +1,11 @@
 <!-- textlint-disable -->
+
 # GCP Static Website Terraform Project
 
 This project provides Infrastructure as Code (IaC) for deploying a static website on Google Cloud Platform using Cloud Storage and Cloud Load Balancing.
 The implementation is based on Google's [Host a Static Website](https://cloud.google.com/storage/docs/hosting-static-website) guide.
 This project is designed to run from the Google Cloud Shell using a user-friendly startup script. Simply clone this repository, run the script (following the prompts), and let Terraform do the rest!
+
 <!-- textlint-enable -->
 
 ## Architecture
@@ -28,10 +30,13 @@ The project creates the following resources:
 
 1. Clone this repository:
 <!-- textlint-disable -->
+
 ```bash
 git clone https://github.com/gmccormick8/simple-gcp-static-website.git && cd simple-gcp-static-website
 ```
+
 <!-- textlint-enable -->
+
 2. Run setup script to initialize the project (enter "y" when prompted):
 
 ```bash
