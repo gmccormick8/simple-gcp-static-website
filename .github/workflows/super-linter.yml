@@ -40,9 +40,9 @@ jobs:
           FIX_YAML_PRETTIER: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
-          LITNER_RULES_PATH: .github\workflows\linters
-          NATURAL_LANGUAGE_CONFIG_FILE: .github\workflows\linters\.textlintrc
-          CHECKOV_CONFIG_FILE: .github\workflows\linters\.checkov.yaml
+          LINTER_RULES_PATH: ./linters/
+          NATURAL_LANGUAGE_CONFIG_FILE: .textlintrc
+          CHECKOV_CONFIG_FILE: .checkov.yaml
           IGNORE_GITIGNORED_FILES: true
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
