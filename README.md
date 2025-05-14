@@ -28,7 +28,7 @@ The project creates the following resources:
   - compute.googleapis.com
   - storage-api.googleapis.com
 
- The tilde (~>) operator allows only the rightmost version component to increment. For example, `~> 1.11` allows installing versions 1.11.0 up to but not including 1.12.0.
+The tilde (~>) operator allows only the rightmost version component to increment. For example, `~> 1.11` allows installing versions 1.11.0 up to but not including 1.12.0.
 
 ## Quick Start (Google Cloud Shell)
 
