@@ -22,11 +22,13 @@ The project creates the following resources:
 
 - [Google Cloud Platform Account](https://console.cloud.google.com)
 - [Google Cloud SDK](https://cloud.google.com/sdk/docs/install) - Preinstalled in Google Cloud Shell
-- [Terraform](https://www.terraform.io/downloads) (version ~> 1.11.0) - Terraform is preinstalled in Google Cloud Shell
+- [Terraform](https://www.terraform.io/downloads) (version ~> 1.11) - Terraform is preinstalled in Google Cloud Shell
 - Active Google Cloud Project with billing enabled
 - Required APIs enabled:
   - compute.googleapis.com
   - storage-api.googleapis.com
+
+ The tilde (~>) operator allows only the rightmost version component to increment. For example, `~> 1.11` allows installing versions 1.11.0 up to but not including 1.12.0.
 
 ## Quick Start (Google Cloud Shell)
 
