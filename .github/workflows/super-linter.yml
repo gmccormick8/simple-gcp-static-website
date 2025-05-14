@@ -34,7 +34,7 @@ jobs:
       - name: Lint Code Base
         uses: github/super-linter@v7
         env:
-          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_ALL_CODEBASE: true
           FIX_MARKDOWN: true
           FIX_SHELL_SHFMT: true
           FIX_TERRAFORM_FMT: true
